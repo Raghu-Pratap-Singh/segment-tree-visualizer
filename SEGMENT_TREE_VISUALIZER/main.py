@@ -4,7 +4,7 @@ import math
 
 # this segment tree is built on top of an array
 class StaticSegmentTree:
-    
+
     # 0 indexed/ 1 indexed
     # sg is the segment tree containing indexes of nodes
     def __init__(self, n:int, indexing_reference:int, sglist:list):
@@ -31,7 +31,7 @@ class StaticSegmentTree:
         # CALL BUILD WITH REQUIRED PARAMETERS <<<
         self.__build(self.width, 0, 0, indexing_reference, 0, self.n-1, None)
 
-        
+
     # build is called on map initialisation and mupdation of map
     def __build(self, currwidth:int, x:int, level:int, id:int, l:int, r:int, parent_id:int):
         # base case of leaf node
@@ -48,7 +48,7 @@ class StaticSegmentTree:
                 self.g.add_edge(self.Map[parent_id], tempnode)
             # return
             return
-        
+
 
         # create node and traverse till leaf node is reached
         self.Map[id] = tuple(self.sg[id].attrs + [(l,r)])
@@ -79,13 +79,13 @@ class StaticSegmentTree:
 
     def printTree(self):
 
-        plt.figure(figsize=(12, 8))  
+        plt.figure(figsize=(12, 8))
 
-        # auto-scale size by total nodes 
+        # auto-scale size by total nodes
         total_nodes = len(self.g.nodes)
         base = 1800         # size when nodes are few
         node_size = max(base // math.sqrt(total_nodes), 300)
-        
+
 
         nx.draw(
             self.g, self.pos,
@@ -96,15 +96,15 @@ class StaticSegmentTree:
             width=1,
             font_size=node_size/44
         )
-        
-        
+
+
         plt.axis("off")
         plt.show()
 
 
 
 class DynamicSegmentTree:
-    
+
     def __init__(self, root, l:int, r:int):
 
         # initialize graph
@@ -119,13 +119,13 @@ class DynamicSegmentTree:
         else:
             # take next power of 2
             self.width = (2**(int(initial) + 1))//2
-        # call build function   
+        # call build function
         self.__build(root, l, r, 0, 0, self.width, None)
 
     def __build(self, node, l:int, r:int, x:int, level:int, currwidth:int, parent):
         # build current node
         tempnode = tuple(node.attrs + [(l,r)])
-        
+
         # add in graph
         self.dg.add_node(tempnode)
 
@@ -136,7 +136,7 @@ class DynamicSegmentTree:
         if parent is not None:
             # connect edge
             self.dg.add_edge(parent, tempnode)
-        
+
         mid = (l+r)//2
         # traverse left if it has a left child
         if node.left is not None:
@@ -145,8 +145,8 @@ class DynamicSegmentTree:
         # traverse right if it has a right child
         if node.right is not None:
             self.__build(node.right, mid+1,r,x+currwidth, level+1, currwidth//2, tempnode)
-        
-    
+
+
     # update function should be called to rebuild the diagram after any change in dynamic segment tree
     def update(self, root, l, r):
         # clear old graph
@@ -156,13 +156,13 @@ class DynamicSegmentTree:
         self.__build(root, l, r, 0, 0, self.width, None)
 
     def printTree(self):
-        plt.figure(figsize=(12, 8))  
+        plt.figure(figsize=(12, 8))
 
-        # auto-scale size by total nodes 
+        # auto-scale size by total nodes
         total_nodes = len(self.dg.nodes)
         base = 1800         # size when nodes are few
         node_size = max(base // math.sqrt(total_nodes), 300)
-        
+
 
         nx.draw(
             self.dg, self.pos,
@@ -173,8 +173,8 @@ class DynamicSegmentTree:
             width=1,
             font_size=node_size/85
         )
-        
-        
+
+
         plt.axis("off")
         plt.show()
 

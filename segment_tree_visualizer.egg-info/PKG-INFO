@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: segment-tree-visualizer
+Version: 0.1.0
+Summary: A generic visualization tool for Static and Dynamic Segment Trees.
+Home-page: https://github.com/Raghu-Pratap-Singh/segment-tree-visualizer
+Author: Raghu Pratap Singh
+Author-email: raghupratapsinghparmar@gmail.com
+License: MIT
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Requires-Python: >=3.8
+Requires-Dist: networkx
+Requires-Dist: matplotlib
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
